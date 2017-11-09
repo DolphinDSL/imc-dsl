@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: Gradle Jar File
+Implementation-Version: 1.0
+Main-Class: pt.lsts.imc.dsl.standalone.Console
+

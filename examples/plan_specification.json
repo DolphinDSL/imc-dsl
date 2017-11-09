@@ -1,0 +1,21 @@
+{
+
+"abbrev":"PlanSpecification","timestamp":1.493037359769E9,"src":0,"src_ent":0,"dst":65535,"dst_ent":255,
+"plan_id":"DSL","description":"","vnamespace":"","variables":[],"start_man_id":"1.Goto",
+"maneuvers":[
+			 {"abbrev":"PlanManeuver","maneuver_id":"1.Goto",
+
+	"data":{"abbrev":"Goto","timeout":0,"lat":41.185242,"lon":-8.704803,"z":3,"z_units":1,"speed":1.5,"speed_units":0,"roll":0,"pitch":0,"yaw":0,"custom":""},
+	"start_actions":[
+						{"abbrev":"SetEntityParameters","name":"Sidescan","params":[{"abbrev":"EntityParameter","name":"Active","value":"true"},{"abbrev":"EntityParameter","name":"Range","value":"50"}]},
+						{"abbrev":"SetEntityParameters","name":"Camera","params":[{"abbrev":"EntityParameter","name":"Active","value":"true"}]}],"end_actions":[]},
+			 {"abbrev":"PlanManeuver","maneuver_id":"2.Rows",
+	"data":{"abbrev":"Rows","timeout":0,"lat":0.012561526351305283,"lon":-0.0026516346296116,"z":3,"z_units":1,"speed":1.5,"speed_units":0,"bearing":0,"cross_angle":0.5,"width":100,"length":200,"hstep":25,"coff":15,"alternation":0,"flags":0,"custom":""},
+	"start_actions":[],"end_actions":[]},
+						{"abbrev":"PlanManeuver","maneuver_id":"3.StationKeeping",
+	"data":{"abbrev":"StationKeeping","lat":41.185242,"lon":-8.704803,"z":3,"z_units":1,"radius":20,"duration":60,"speed":1.5,"speed_units":0,"custom":""},"start_actions":[],"end_actions":[]}],
+	
+	"transitions":[{"abbrev":"PlanTransition","source_man":"1.Goto","dest_man":"2.Rows","conditions":"maneuverIsDone","actions":[]},
+	{"abbrev":"PlanTransition","source_man":"2.Rows","dest_man":"3.StationKeeping","conditions":"maneuverIsDone","actions":[]}],"start_actions":[],"end_actions":[]
+
+}
