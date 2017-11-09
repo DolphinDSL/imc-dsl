@@ -1,5 +1,5 @@
 // Plan builder
-def home = new Location(41.185242, -8.704803)
+def home = Location.APDL
 
 def imc_plan = plan {
 
