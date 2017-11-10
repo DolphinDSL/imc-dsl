@@ -3,7 +3,7 @@ def home = Location.APDL
 
 def imc_plan = plan {
 
-	planName 'Bananas-Plan'
+	planName 'Example-Plan'
 	
 	// set current plan location
 	locate home 
