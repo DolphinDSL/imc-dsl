@@ -4,3 +4,6 @@
 /.classpath
 /.settings/
 /.project
+/.lock
+/.bin
+*.jar
