@@ -18,6 +18,18 @@ task IMC_DSL(type:Jar){
 	//from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 	with jar
 }
+
+
+task plugin(type:Jar, dependsOn: IMC_DSL){
+	from (sourceSets.main.groovy) {
+		include "pt/lsts/imc/dsl/"
+	}
+	destinationDir = file("$rootDir/lib")
+	baseName = "imc_plan_dsl"
+	//from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+}
+
 //create a single Jar with all dependencies
 task all(type: Jar, dependsOn: IMC_DSL) {
 	manifest {
