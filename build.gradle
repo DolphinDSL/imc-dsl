@@ -14,7 +14,7 @@ version = '1.0'
 task IMC_DSL(type:Jar){ 
     from sourceSets.main.groovy
 	destinationDir = file("$rootDir/lib")
-    baseName = project.name + '-groovy'
+    baseName = "imcplanDSL" //project.name + '-groovy'
 	//from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 	with jar
 }
@@ -65,7 +65,7 @@ dependencies {
 	//IMC library in Java
 	compile name: 'libimc'
 	//StandAlone jar 
-	runtime  name: 'IMC_DSL-groovy-1.0'
+	runtime  name: 'imcplanDSL-1.0'
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:21.0'
