@@ -36,7 +36,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
+//import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
@@ -119,7 +119,7 @@ public class Console extends JFrame{
 	JScrollPane outputPanel;
 	JTextArea output;
 	RSyntaxTextArea editor; 
-	JButton select,execButton,stop,saveFile,export,undo,redo;
+	JButton select,execButton,stop,saveFile,undo,redo;
 	RTextScrollPane scroll;
 	SpinnerModel model = new SpinnerNumberModel(14, 2, 32, 1);     
 	JSpinner spinner = new JSpinner(model);
@@ -158,33 +158,33 @@ public class Console extends JFrame{
 
     };
     
-    Action exportAction = new AbstractAction("Export Plan",getIcon("icons/save.png",15,15)) {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if(shell!=null && script!=null){
-            	File directory = scriptDir;
-                final JFileChooser fc = new JFileChooser(directory);
-                fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("Export Format","xml","json");
-                FileNameExtensionFilter filter1 = new FileNameExtensionFilter("xml","xml");
-                FileNameExtensionFilter filter2 = new FileNameExtensionFilter("json","json");
-                fc.setAcceptAllFileFilterUsed(false);
-                fc.setFileFilter(filter);
-                fc.addChoosableFileFilter(filter1);
-                fc.addChoosableFileFilter(filter2);
-                // Demonstrate "Save" dialog:
-                int rVal = fc.showDialog(Console.this,"Export");
-                if (rVal == JFileChooser.APPROVE_OPTION) {
-                   String path  = fc.getSelectedFile().getAbsolutePath();
-                   String file = path.substring(path.lastIndexOf("/"));
-                   String extension = file.substring(file.indexOf("."));
-                   shell.exportPlan(path,extension);
-                }
-            	
-            }
-        }
-    };
+//    Action exportAction = new AbstractAction("Export Plan",getIcon("icons/save.png",15,15)) {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            if(shell!=null && script!=null){
+//            	File directory = scriptDir;
+//                final JFileChooser fc = new JFileChooser(directory);
+//                fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+//                FileNameExtensionFilter filter = new FileNameExtensionFilter("Export Format","xml","json");
+//                FileNameExtensionFilter filter1 = new FileNameExtensionFilter("xml","xml");
+//                FileNameExtensionFilter filter2 = new FileNameExtensionFilter("json","json");
+//                fc.setAcceptAllFileFilterUsed(false);
+//                fc.setFileFilter(filter);
+//                fc.addChoosableFileFilter(filter1);
+//                fc.addChoosableFileFilter(filter2);
+//                // Demonstrate "Save" dialog:
+//                int rVal = fc.showDialog(Console.this,"Export");
+//                if (rVal == JFileChooser.APPROVE_OPTION) {
+//                   String path  = fc.getSelectedFile().getAbsolutePath();
+//                   String file = path.substring(path.lastIndexOf("/"));
+//                   String extension = file.substring(file.indexOf("."));
+//                   shell.exportPlan(path,extension);
+//                }
+//            	
+//            }
+//        }
+//    };
 
    
     
@@ -303,7 +303,7 @@ public class Console extends JFrame{
     execButton = new JButton(execAction);
     select     = new JButton(selectAction);
     stop       = new JButton(stopAction);
-    export     = new JButton(exportAction);
+    //export     = new JButton(exportAction);
     saveFile   = new JButton(saveAction);
     undo       = new JButton(undoAction);
     redo       = new JButton(redoAction);
@@ -343,7 +343,7 @@ public class Console extends JFrame{
     //middle section
     buttons.add(select);
     buttons.add(saveFile);
-    buttons.add(export);
+    //buttons.add(export);
     buttons.add(execButton);
     buttons.add(stop);
     buttons.add(spinner);
@@ -353,7 +353,7 @@ public class Console extends JFrame{
     
     //onHover tool tip text
     select.setToolTipText("Select File");
-    export.setToolTipText("Export Plan Specification");
+    //export.setToolTipText("Export Plan Specification");
     spinner.setToolTipText("Adjust Editor's Font Size");
     saveFile.setToolTipText("Save Current File as...");
     undo.setToolTipText("Ctrl+Z");
