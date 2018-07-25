@@ -1,0 +1,35 @@
+//def lauvs = {"lauv-xplore-3","lauv-xplore-4","lauv-xlpore-5"}
+
+def init_plan = plans.get('p1');
+
+def plan = new Plan(console,init_plan)
+
+println plan.getPlan_id()
+
+def wps = plan.waypoints()
+
+
+
+
+def start = plan.initialLocation()
+
+wps[1..wps.size-1].eachWithIndex{
+	wp,i ->
+	println i
+	def new_plan = new Plan(console)
+	plan.midpoints(start,wp,90000).eachWithIndex{ 
+		loc,index -> 
+		
+		new_plan.with {
+			planName 'transect'+index+i
+			println plan_id
+			goTo location:start
+			midpoints(start,loc,9000).each {
+				goTo location:it
+			}
+			//goTo location:loc
+			addToConsole()
+		}
+		start=wp
+	}
+}
