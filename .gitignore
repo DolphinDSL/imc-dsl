@@ -1,4 +1,4 @@
-/.gradle/
+.gradle/
 /build/
 /bin/
 /.classpath
@@ -6,4 +6,5 @@
 /.project
 /.lock
 /.bin
-*.jar
+/*.jar
+/*.class
