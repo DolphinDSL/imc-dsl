@@ -116,15 +116,12 @@ class DSLPlan {
 		 List<Payload> payload = new ArrayList<>()
 		 if(params!=null){
 		 params.with{
-			 if(speed!= null)
-			 	this.speed = speed
-			 if(z!= null)
-			 	this.z = z
-			 if(location!= null)
-			 	this.location = params.location
-			 if(params['id'] != null){
-			 	id = params.id
-			 }
+			 if(params['speed']!= null)
+		 		this.speed = params.speed
+			 if(params['z']!= null)
+				 this.z = params.z
+			 if(params['location']!= null)
+				 this.location = params.location
 			 if(params['payload'] != null){
 				 def payloadComponent
 				 params['payload'].each{
@@ -149,7 +146,61 @@ class DSLPlan {
 	 	def man = maneuver(id,Goto,Payload.addPayload(payload))
 		addPayloadRequirements(payload)
         man
-	} 
+	}
+	 
+	 
+	 def Maneuver followPath (LinkedHashMap params){
+		 def id = "$count"+".FollowPath"
+		 Vector<PathPoint> pts = new Vector<>()
+		 count++
+		 List<Payload> payload = new ArrayList<>()
+		 if(params!=null){
+		 params.with{
+			 if(params['speed']!= null)
+		 		this.speed = params.speed
+			 if(params['z']!= null)
+				 this.z = params.z
+			 if(params['location']!= null)
+				 this.location = params.location
+			 if(params['payload'] != null){
+				 def payloadComponent
+				 params['payload'].each{
+					 if(it['name'] != null){
+						 def payload_name = it['name']
+						 payloadComponent = new Payload(payload_name)
+						 
+							 it.each {
+							 key,value ->
+							 if(!key.equals("name")){ //verify(payload,key) <-- verify it parameter exists in payload to avoid runtime exceptions!"!!
+								 payloadComponent.property key, value}
+							  }
+
+						 payload.add payloadComponent
+				 }
+				 else
+					 println "The name of the payload required must be provided."              }
+		 }
+			if(params['points'] != null){
+				params.points.each {
+					pts.add(convertToPP(this.location,it))		
+				}
+			}
+		 
+		 }
+	}
+		FollowPath man = maneuver(id,FollowPath,Payload.addPayload(payload))
+		man.setPoints(pts)
+		addPayloadRequirements(payload)
+		man
+	}
+	 
+def PathPoint convertToPP(Location l1,Location l2){
+	double[] offsets = l1.offsets(l2)
+	float ze =0.0
+	PathPoint pp = new PathPoint(((float)offsets[0]),((float)offsets[1]),ze)
+	pp
+}
+	  
 def addPayloadRequirements(List<Payload> ps){
 	ps.each {
 		if(!payload.contains(it.getName()))

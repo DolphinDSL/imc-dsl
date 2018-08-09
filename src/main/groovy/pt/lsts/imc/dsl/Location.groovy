@@ -22,7 +22,7 @@ class Angle {
 }
 /**
  * 
- * @author lsts
+ * @author keila
  * Latitude and Longitude in Radians 
  */
 class Location {
